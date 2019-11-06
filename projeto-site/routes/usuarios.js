@@ -16,12 +16,10 @@ router.post('/autenticar', function(req, res, next) {
 	sequelize.query(instrucaoSql, {
 		model: Usuario
 	}).then(resultado => {
-		let resultadoJson = JSON.stringify(resultado, null, 2);	
-		console.log(`Resposta: ${resultadoJson}`);
 		console.log(`Encontrados: ${resultado.length}`);
 
 		if (resultado.length == 1) {
-			res.send(resultadoJson);
+			res.json(resultado);
 		} else {
 			res.status(403).send('Mais de um usuário com o mesmo login e senha!');
 		}
@@ -50,12 +48,9 @@ router.post('/', function(req, res, next) {
 router.get('/', function(req, res, next) {
 	console.log('Recuperando todos os usuários');
 	Usuario.findAndCountAll().then(resultado => {
-		let resultadoJson = JSON.stringify(resultado.rows, null, 2);
-		
-		console.log(`Resposta: ${resultadoJson}`);
 		console.log(`${resultado.count} registros`);
 
-		res.send(resultadoJson);
+		res.json(resultado.rows);
 	});	
 });
 
