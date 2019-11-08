@@ -27,7 +27,7 @@ router.get('/ultimas', function(req, res, next) {
 			res.json(resultado);
 	  }).catch(erro => {
 			console.error(erro);
-			res.status(500).send(erro.original.message);
+			res.status(500).send(erro.message);
 	  });
 });
 
@@ -41,11 +41,10 @@ router.get('/tempo-real', function (req, res, next) {
 
 	sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
 		.then(resultado => {
-			console.log(`Encontrados: ${resultado.length}`);
-			res.json(resultado);
+			res.json(resultado[0]);
 		}).catch(erro => {
 			console.error(erro);
-			res.status(500).send(erro.original.message);
+			res.status(500).send(erro.message);
 		});
   
 });
@@ -67,11 +66,10 @@ router.get('/estatisticas', function (req, res, next) {
 
 	sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
 		.then(resultado => {
-			console.log(`Encontrados: ${resultado.length}`);
-			res.json(resultado);
+			res.json(resultado[0]);
 		}).catch(erro => {
 			console.error(erro);
-			res.status(500).send(erro.original.message);
+			res.status(500).send(erro.message);
 		});
   
 });
