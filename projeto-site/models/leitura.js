@@ -9,7 +9,8 @@ module.exports = (sequelize, DataTypes) => {
     let Leitura = sequelize.define('Leitura',{	
 		id: {
 			type: DataTypes.INTEGER,
-			primaryKey: true
+			primaryKey: true,
+			autoIncrement: true
 		},	
 		temperatura: {
 			type: DataTypes.REAL,

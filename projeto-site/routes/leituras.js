@@ -12,7 +12,7 @@ router.get('/ultimas', function(req, res, next) {
 	console.log(`Recuperando as últimas ${limite_linhas} leituras`);
 	
 	const instrucaoSql = `select top ${limite_linhas} 
-						temperatura, 
+						temperaturas, 
 						umidade, 
 						momento,
 						FORMAT(momento,'HH:mm:ss') as momento_grafico 
@@ -25,7 +25,12 @@ router.get('/ultimas', function(req, res, next) {
 	  .then(resultado => {
 			console.log(`Encontrados: ${resultado.length}`);
 			res.json(resultado);
-	  })
+	  }).catch(erro => {
+			console.error(erro);
+			res.status(500).send(erro.original.message);
+	  });
 });
+
+
 
 module.exports = router;

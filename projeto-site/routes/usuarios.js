@@ -24,7 +24,10 @@ router.post('/autenticar', function(req, res, next) {
 			res.status(403).send('Mais de um usuário com o mesmo login e senha!');
 		}
 
-	});	
+	}).catch(erro => {
+		console.error(erro);
+		res.status(500).send(erro.original.message);
+  	});
 });
 
 /* Cadastrar usuário */
@@ -35,12 +38,13 @@ router.post('/', function(req, res, next) {
 		nome : req.body.nome,
 		login : req.body.login,
 		senha: req.body.senha
-	}).then(function (resultado) {
+	}).then(resultado => {
 		console.log(`Registro criado: ${resultado}`)
         res.send(resultado);
-    }).catch(function (erro) {
-		res.status(500).send(`Erro ao tentar criar usuário! ${erro}`);
-	});
+    }).catch(erro => {
+		console.error(erro);
+		res.status(500).send(erro.original.message);
+  	});
 });
 
 
@@ -51,7 +55,10 @@ router.get('/', function(req, res, next) {
 		console.log(`${resultado.count} registros`);
 
 		res.json(resultado.rows);
-	});	
+	}).catch(erro => {
+		console.error(erro);
+		res.status(500).send(erro.original.message);
+  	});
 });
 
 module.exports = router;
