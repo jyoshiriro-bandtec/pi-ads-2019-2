@@ -94,7 +94,7 @@ function registrar_leitura(temperatura, umidade) {
     banco.conectar().then(() => {
 
         return banco.sql.query(`INSERT into leitura (temperatura, umidade, momento)
-                                values (${temperatura}, ${umidade}, CURRENT_TIMESTAMP);`);
+                                values (${temperatura}, ${umidade}, CONVERT(Datetime, '${agora()}', 120));`);
 
     }).catch(erro => {
 
@@ -106,6 +106,14 @@ function registrar_leitura(temperatura, umidade) {
         efetuando_insert = false;
     });
 
+}
+
+// função que retorna data e hora atual no formato aaaa-mm-dd HH:mm:ss
+function agora() {
+	let momento_atual = new Date();
+	let retorno = `${momento_atual.toLocaleDateString()} ${momento_atual.toLocaleTimeString()}`;
+	console.log(`Data e hora atuais: ${retorno}`);
+	return retorno;
 }
 
 var efetuando_insert = false;

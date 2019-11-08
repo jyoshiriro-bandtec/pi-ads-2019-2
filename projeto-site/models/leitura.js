@@ -6,30 +6,34 @@ https://codewithhugo.com/sequelize-data-types-a-practical-guide/
 */
 
 module.exports = (sequelize, DataTypes) => {
-    let Usuario = sequelize.define('Usuario',{
+    let Leitura = sequelize.define('Leitura',{	
 		id: {
 			type: DataTypes.INTEGER,
 			primaryKey: true
-		},		
-		nome: {
-			type: DataTypes.STRING,
+		},	
+		temperatura: {
+			type: DataTypes.REAL,
 			allowNull: false
 		},
-		login: {
-			type: DataTypes.STRING,
+		umidade: {
+			type: DataTypes.REAL,
 			allowNull: false
 		},
-		senha: {
-			type: DataTypes.STRING,
+		momento: {
+			type: DataTypes.DATE,
 			allowNull: false
+		},
+		momento_grafico: {
+			type: DataTypes.VIRTUAL, // campo 'falso' (não existe na tabela). Deverá ser preenchido 'manualmente' no select
+			allowNull: true
 		}
 	}, 
 	{
-		tableName: 'usuario', 
+		tableName: 'leitura', 
 		freezeTableName: true, 
 		underscored: true,
 		timestamps: false,
 	});
 
-    return Usuario;
+    return Leitura;
 };
