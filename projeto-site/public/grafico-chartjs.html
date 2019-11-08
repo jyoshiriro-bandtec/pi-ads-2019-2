@@ -10,6 +10,7 @@
     <!-- scripts do Chart.js -->
     <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
     <script type="text/javascript" src="https://www.chartjs.org/samples/latest/utils.js"></script>
+    <script type="text/javascript" src="funcoes.js"></script>
 
 </head>
 
@@ -29,24 +30,10 @@
 </html>
 <script>
 
-    var usuario;
     var exibiu_grafico = false;
 
-    verificarAutenticacao();
+    verificar_autenticacao();
 
-    function verificarAutenticacao() {
-        usuario = sessionStorage.usuario_bandtec;
-        if (usuario == undefined) {
-            window.location.href = 'login.html';
-        } else {
-            b_usuario.innerHTML = usuario;
-        }
-    }
-
-    function logoff() {
-        sessionStorage.removeItem('usuario_bandtec');
-        verificarAutenticacao();
-    }
 
     // só mexer se quiser alterar o tempo de atualização
     // ou se souber o que está fazendo!

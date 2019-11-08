@@ -9,6 +9,8 @@
 
     <!-- script do google charts -->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+    <script type="text/javascript" src="funcoes.js"></script>
 </head>
 
 <body onload="atualizarGrafico()">
@@ -25,24 +27,6 @@
 
 </html>
 <script>
-
-    var usuario;
-
-    verificarAutenticacao();
-
-    function verificarAutenticacao() {
-        usuario = sessionStorage.usuario_bandtec;
-        if (usuario == undefined) {
-            window.location.href = 'login.html';
-        } else {
-            b_usuario.innerHTML = usuario;
-        }
-    }
-
-    function logoff() {
-        sessionStorage.removeItem('usuario_bandtec');
-        verificarAutenticacao();
-    }
 
     // Não mexa nestas 3 linhas! 
     google.load('visualization', '1', {
